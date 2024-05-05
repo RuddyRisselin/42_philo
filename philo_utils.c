@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrisseli <rrisseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 09:29:19 by rrisseli          #+#    #+#             */
-/*   Updated: 2024/04/05 17:24:10 by rrisseli         ###   ########.fr       */
+/*   Updated: 2024/05/04 22:38:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	free_matrix(char **av)
 		free(av[i++]);
 	free(av - 1);
 }
+
 
 int	ft_atoi(char *str)
 {
@@ -51,24 +52,12 @@ int	ft_atoi(char *str)
 	return (res * negative);
 }
 
-void	parsing_init(t_data *data, int ac, char **av)
+unsigned int	get_time(void)
 {
-	bool	flag_ac_2;
+	struct timeval	tv;
 
-	flag_ac_2 = false;
-	if (ac == 2)
-	{
-		flag_ac_2 = true;
-		av = ft_split(av[1], ' ');
-	}
-	data->n_philo = ft_atoi(av[1]);
-	data->time_to_die = ft_atoi(av[2]) * 1000;
-	data->time_to_eat = ft_atoi(av[3]) * 1000;
-	data->time_to_sleep = ft_atoi(av[4]) * 1000;
-	if (tablen(av) == 6)
-		data->time_philo_eat = ft_atoi(av[5]) * 1000;
-	else
-		data->time_philo_eat = 0;
+	gettimeofday(&tv, 0);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
 int	tablen(char **tab)

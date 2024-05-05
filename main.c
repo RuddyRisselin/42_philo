@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrisseli <rrisseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 09:04:40 by rrisseli          #+#    #+#             */
-/*   Updated: 2024/04/05 16:35:29 by rrisseli         ###   ########.fr       */
+/*   Updated: 2024/05/04 22:50:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int	main(int ac, char **av)
 	if (!data)
 		return (0);
 	parsing_init(data, ac, av);
+	thread_mutex_init(data);
 	philo(data);
 }
