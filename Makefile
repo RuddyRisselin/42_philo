@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/05 09:34:17 by rrisseli          #+#    #+#              #
-#    Updated: 2024/05/04 22:50:45 by marvin           ###   ########.fr        #
+#    Updated: 2024/05/05 15:01:07 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS = main.c \
        philo_utils.c \
 	   routine_philo.c \
 	   init.c \
+	   check_philo.c \
 
 OBJS = $(SRCS:.c=.o)
 
