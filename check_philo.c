@@ -12,12 +12,27 @@
 
 #include "philo.h"
 
-void	check_philo_died(t_philo *philo)
+int	check_variables(t_philo *philo)
 {
-	if (philo->time_last_meal >= philo->data->time_to_die)
+	pthread_mutex_lock(&philo->data->check_dead);
+	if ((philo->data->dead == 1) || (philo->hungry == 0))
 	{
-		printf("\n\n--------the philo %ld die, end of simulation--------\n\n", philo->index);
-		exit(0);
+		pthread_mutex_unlock(&philo->data->check_dead);
+		return (1);
 	}
-	return ;
+	pthread_mutex_unlock(&philo->data->check_dead);
+	return (0);
+}
+
+void	check_vitals(t_philo *philo)
+{
+	if (((get_time() - philo->params[START_DATE]) - philo->time_last_meal) > philo->params[TT_DIE])
+	{
+		print_msg("died", philo);
+		pthread_mutex_lock(&philo->data->check_dead);
+		philo->data->dead = 1;
+		pthread_mutex_unlock(&philo->data->check_dead);
+	}
+	if (philo->meal_count >= philo->params[MAX_MEALS])
+		philo->hungry = 0;
 }

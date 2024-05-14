@@ -6,14 +6,13 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/05 09:34:17 by rrisseli          #+#    #+#              #
-#    Updated: 2024/05/05 15:01:07 by marvin           ###   ########.fr        #
+#    Updated: 2024/05/14 17:25:54 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 SRCS = main.c \
-       ft_split.c \
        philo_utils.c \
 	   routine_philo.c \
 	   init.c \

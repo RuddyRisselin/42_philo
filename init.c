@@ -14,56 +14,51 @@
 
 void	parsing_init(t_data *data, int ac, char **av)
 {
-	data->start = get_time();
-	if (ac == 2)
-	{
-		av = ft_split(av[1], ' ');
-	}
-	data->n_philo = ft_atoi(av[1]);
-	data->time_to_die = ft_atoi(av[2]);
-	data->time_to_eat = ft_atoi(av[3]);
-	data->time_to_sleep = ft_atoi(av[4]);
-	if (tablen(av) == 6)
-		data->time_philo_eat = ft_atoi(av[5]);
+	data->param[N_PHILO] = ft_atoi(av[1]);
+	data->param[TT_DIE] = ft_atoi(av[2]);
+	data->param[TT_EAT] = ft_atoi(av[3]);
+	data->param[TT_SLEEP] = ft_atoi(av[4]);
+	if (ac == 6)
+		data->param[MAX_MEALS] = ft_atoi(av[5]);
 	else
-		data->time_philo_eat = 0;
+		data->param[MAX_MEALS] = 10000;
+	data->param[START_DATE] = get_time();
+	if (data->param[TT_SLEEP] > data->param[TT_DIE])
+		data->param[TT_SLEEP] = data->param[TT_DIE];
+	if (data->param[TT_EAT] > data->param[TT_DIE])
+		data->param[TT_EAT] = data->param[TT_DIE];
 }
 
 void	thread_mutex_init(t_data *data)
 {
-	int i;
+	unsigned int i;
 
 	i = 0;
-	data->threads = malloc(sizeof(pthread_t) * data->n_philo);
+	
+	data->threads = malloc(sizeof(pthread_t) * data->param[N_PHILO]);
 	if (!data->threads)
 		exit (0);
-	data->mutex = malloc(sizeof(pthread_mutex_t) * data->n_philo);
+	data->mutex = malloc(sizeof(pthread_mutex_t) * data->param[N_PHILO]);
 	if (!data->mutex)
 		exit(0);
-	data->philo = malloc(sizeof(t_philo) * data->n_philo);
+	data->philo = malloc(sizeof(t_philo) * data->param[N_PHILO]);
 	if (!data->philo)
 		exit(0);
-	while(i < data->n_philo)
+	while(i < data->param[N_PHILO])
 	{
 		pthread_mutex_init(&data->mutex[i], NULL);
 		i++;
 	}
-	pthread_mutex_init(&data->mutex_init_philo, NULL);
+	pthread_mutex_init(&data->check_dead, NULL);
+	pthread_mutex_init(&data->print, NULL);
 	return ;
 }
 
 void	philo_init(t_philo *philo)
 {
-	//philo->index = philo->data->i + 1;
-	if (philo->index + 1 == philo->data->n_philo)
-		philo->fork_left = philo->data->n_philo;
-	else
-		philo->fork_left = (philo->index + 1) % philo->data->n_philo;
-	if ((philo->index + 1) == 1)
-		philo->fork_right = philo->data->n_philo;
-	else
-		philo->fork_right = philo->index;
-	philo->full = false;
-	philo->time_last_meal = 0;
-	printf("philo[%ld] fork_left[%ld] fork right[%ld]\n", philo->index, philo->fork_left, philo->fork_right);
+	ft_memcpy(philo->params, philo->data->param, sizeof(t_params));
+	philo->time_last_meal = 1;
+	philo->fork_left = (philo->index + 1) % philo->params[N_PHILO];
+	philo->fork_right = philo->index;
+	philo->hungry = 1;
 }
