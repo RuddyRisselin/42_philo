@@ -6,12 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 09:04:40 by rrisseli          #+#    #+#             */
-/*   Updated: 2024/05/14 22:17:32 by marvin           ###   ########.fr       */
+/*   Updated: 2024/05/14 22:20:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+// ./philo 4 310 200 100 le philo dois mourrir avec 310ms mm probleme que celui du dessu
 void	free_all(t_data *data)
 {
 	unsigned int	i;
