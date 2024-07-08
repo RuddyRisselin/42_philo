@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 09:29:19 by rrisseli          #+#    #+#             */
-/*   Updated: 2024/05/14 22:00:23 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/08 22:17:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-unsigned int ft_atoi(char *str)
+unsigned int	ft_atoi(char *str)
 {
 	unsigned int	res;
 
@@ -36,7 +36,7 @@ unsigned int ft_atoi(char *str)
 	{
 		printf("Error\n");
 		exit (0);
-	}	
+	}
 	return (res);
 }
 
@@ -64,9 +64,9 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 void	ft_swap_fork(long *fork_left, long *fork_right)
 {
-	long tmp;
+	long	tmp;
 
-	tmp = *fork_left;  
+	tmp = *fork_left;
 	*fork_left = *fork_right;
 	*fork_right = tmp;
 }
@@ -77,7 +77,8 @@ void	print_msg(char *msg, t_philo *philo)
 	pthread_mutex_lock(&philo->data->check_dead);
 	if (philo->data->dead == 0)
 	{
-		printf("%u %ld %s\n",(get_time() - philo->params[START_DATE]) , philo->index + 1, msg);
+		printf("%u %ld %s\n", (get_time() - philo->params[START_DATE]),
+			philo->index + 1, msg);
 	}
 	pthread_mutex_unlock(&philo->data->print);
 	pthread_mutex_unlock(&philo->data->check_dead);

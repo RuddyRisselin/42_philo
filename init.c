@@ -31,10 +31,9 @@ void	parsing_init(t_data *data, int ac, char **av)
 
 void	thread_mutex_init(t_data *data)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
-	
 	data->threads = malloc(sizeof(pthread_t) * data->param[N_PHILO]);
 	if (!data->threads)
 		exit (0);
@@ -44,7 +43,7 @@ void	thread_mutex_init(t_data *data)
 	data->philo = malloc(sizeof(t_philo) * data->param[N_PHILO]);
 	if (!data->philo)
 		exit(0);
-	while(i < data->param[N_PHILO])
+	while (i < data->param[N_PHILO])
 	{
 		pthread_mutex_init(&data->mutex[i], NULL);
 		i++;

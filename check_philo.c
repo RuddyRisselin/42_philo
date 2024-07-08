@@ -26,7 +26,8 @@ int	check_variables(t_philo *philo)
 
 void	check_vitals(t_philo *philo)
 {
-	if (((get_time() - philo->params[START_DATE]) - philo->time_last_meal) > philo->params[TT_DIE])
+	if (((get_time() - philo->params[START_DATE])
+			- philo->time_last_meal) > philo->params[TT_DIE])
 	{
 		print_msg("died", philo);
 		pthread_mutex_lock(&philo->data->check_dead);

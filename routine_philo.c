@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:39:16 by rrisseli          #+#    #+#             */
-/*   Updated: 2024/05/14 22:17:00 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/08 22:22:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	philo_eat(t_philo *philo)
 	}
 	print_msg("is eating", philo);
 	philo->meal_count++;
-	philo->time_last_meal = (get_time() - philo->params[START_DATE]) + philo->params[TT_EAT];
+	philo->time_last_meal = (get_time() - philo->params[START_DATE])
+		+ philo->params[TT_EAT];
 	usleep(philo->params[TT_EAT] * 1000);
 	if (philo->meal_count == philo->params[MAX_MEALS])
 		philo->hungry = 0;
@@ -47,7 +48,7 @@ void	*routine(t_philo *philo)
 	}
 	if (philo->index % 2 == 0)
 		ft_swap_fork(&philo->fork_left, &philo->fork_right);
-	while(1)
+	while (1)
 	{
 		if (philo_eat(philo) == 0)
 			return (0);
@@ -63,8 +64,8 @@ void	*routine(t_philo *philo)
 
 void	philo(t_data *data)
 {
-	unsigned int i;
-	
+	unsigned int	i;
+
 	i = 0;
 	data->i = 0;
 	data->dead = 0;
@@ -74,7 +75,8 @@ void	philo(t_data *data)
 		data->philo[i].data = data;
 		data->philo[i].index = i;
 		philo_init(&data->philo[i]);
-		if (pthread_create(&data->threads[i], NULL, (void *(*)(void *))&routine, &data->philo[i]) != 0)
+		if (pthread_create(&data->threads[i], NULL,
+				(void *)&routine, &data->philo[i]) != 0)
 			return ;
 		i++;
 	}
