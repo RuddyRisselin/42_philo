@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:39:16 by rrisseli          #+#    #+#             */
-/*   Updated: 2024/07/08 22:22:52 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/09 14:20:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,30 @@ void	*routine(t_philo *philo)
 	return (0);
 }
 
+void	monitor_philo(t_data *data)
+{
+	unsigned int	i;
+
+	while (1)
+	{
+		i = 0;
+		while (i < data->param[N_PHILO])
+		{
+			if (((get_time() - data->param[START_DATE]) - data->philo[i].time_last_meal) > data->param[TT_DIE])
+			{
+				printf("%u %d died\n", (get_time() - data->param[START_DATE]), i + 1);
+				data->dead = 1;
+				break;				
+			}
+			i++;
+		}
+		if (data->dead == 1)
+			break;
+		usleep(1000);		
+	}
+	
+}
+
 void	philo(t_data *data)
 {
 	unsigned int	i;
@@ -80,6 +104,7 @@ void	philo(t_data *data)
 			return ;
 		i++;
 	}
+	monitor_philo(data);
 	i = 0;
 	while (i < data->param[N_PHILO])
 	{
