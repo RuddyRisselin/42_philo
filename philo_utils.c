@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 09:29:19 by rrisseli          #+#    #+#             */
-/*   Updated: 2024/07/08 22:17:10 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/10 00:04:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ unsigned int	ft_atoi(char *str)
 	if (*str == '-')
 	{
 		printf("Error\n");
-		exit (0);
+		return (0);
 	}
 	if (*str == '+')
 		++str;
@@ -33,10 +33,7 @@ unsigned int	ft_atoi(char *str)
 		++str;
 	}
 	if ((res == 0) || (*str == '.' || *str == ',') || (res > 2147483647))
-	{
-		printf("Error\n");
-		exit (0);
-	}
+		return (0);
 	return (res);
 }
 

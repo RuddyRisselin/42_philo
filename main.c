@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 09:04:40 by rrisseli          #+#    #+#             */
-/*   Updated: 2024/07/08 22:14:56 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/09 23:58:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	main(int ac, char **av)
 		printf("Error\n");
 		return (1);
 	}
-	parsing_init(&data, ac, av);
+	if (parsing_init(&data, ac, av) == 1)
+		return (0);
 	thread_mutex_init(&data);
 	philo(&data);
 	free_all(&data);

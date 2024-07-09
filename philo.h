@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 09:05:11 by rrisseli          #+#    #+#             */
-/*   Updated: 2024/07/08 22:21:07 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/09 23:59:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			check_vitals(t_philo *philo);
 int				check_variables(t_philo *philo);
 
 void			thread_mutex_init(t_data *data);
-void			parsing_init(t_data *data, int ac, char **av);
+int				parsing_init(t_data *data, int ac, char **av);
 void			philo_init(t_philo *philo);
 void			print_msg(char *msg, t_philo *philo);
 
